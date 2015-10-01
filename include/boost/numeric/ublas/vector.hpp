@@ -909,12 +909,12 @@ namespace boost { namespace numeric { namespace ublas {
 #if defined(BOOST_MSVC)
         // This may or may not work. Maybe use this for all instead only for MSVC
         template <typename... U>
-        fixed_vector(U&&... values) :
+        explicit fixed_vector(U&&... values) :
             vector_container<self_type> (),
             data_{{ std::forward<U>(values)... }} {}
 #else
         template <typename... Types>
-        fixed_vector(value_type v0, Types... vrest) :
+        explicit fixed_vector(value_type v0, Types... vrest) :
             vector_container<self_type> (),
             data_{ { v0, vrest... } } {}
 #endif
